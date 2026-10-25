@@ -1,0 +1,7 @@
+
+const toggle=document.querySelector('.mobile-toggle');
+const links=document.querySelector('.navlinks');
+if(toggle&&links){toggle.addEventListener('click',()=>{const open=links.classList.toggle('open');toggle.setAttribute('aria-expanded',String(open));});}
+document.querySelectorAll('[data-current-year]').forEach(el=>el.textContent=new Date().getFullYear());
+const form=document.querySelector('[data-enquiry-form]');
+if(form){form.addEventListener('submit',e=>{e.preventDefault();const data=new FormData(form);const company=data.get('company')||'';const name=data.get('name')||'';const email=data.get('email')||'';const phone=data.get('phone')||'';const product=data.get('product')||'';const quantity=data.get('quantity')||'';const location=data.get('location')||'';const message=data.get('message')||'';const subject=encodeURIComponent('Petroleum Supply Enquiry - '+product);const body=encodeURIComponent(`Name: ${name}\nCompany: ${company}\nEmail: ${email}\nPhone: ${phone}\nProduct: ${product}\nRequired quantity: ${quantity}\nDelivery location: ${location}\nAdditional details: ${message}`);const emailAddress='sales@yourdomain.com';window.location.href=`mailto:${emailAddress}?subject=${subject}&body=${body}`;const note=form.querySelector('.form-note');if(note)note.textContent='Your email app should open with the enquiry prepared. Replace sales@yourdomain.com with the company email before launch.';});}
